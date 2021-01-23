@@ -1,0 +1,19 @@
+1. haskell
+[daffodil|i <- [1..9], j <- [0..9], k <- [0..9], let daffodil = i*100 + j*10 + k, daffodil == i^3 + j^3 + k^3 ]
+
+2. python
+def most_frequency(nums):
+  nums.sort()
+  return nums[len(nums)//2]
+
+
+3.def isValid(self, s: str) -> bool:
+        dic = {'{': '}',  '[': ']', '(': ')', '?': '?'}
+        stack = ['?']
+        for c in s:
+            if c in dic: stack.append(c)
+            elif dic[stack.pop()] != c: return False 
+        return len(stack) == 1
+
+
+4.

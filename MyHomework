@@ -1,0 +1,89 @@
+Q1
+
+public class homework {
+	
+	public static void main(String[] args) {
+		
+		for(int a=1; a<10; a++) {
+			for(int b=0; b<10; b++) {
+				for(int c=0; c<10;c++) {
+					if(a*a*a + b*b*b +c*c*c == 100*a+10*b+c) {
+						int narcissus = 100*a + 10*b + c;
+						System.out.println(narcissus);
+					}
+				}
+			}
+		}
+	}
+
+}
+
+
+Q2
+
+public class nums {
+	
+	    public void majorityElement(int[] nums) {
+	        int n= nums.length;
+	    	if(n % 2 ==0){
+	            for(int index=0; index<nums.length; index++){
+	                int timecount =0;
+	                if(nums[index] == nums[index+1]){
+	                    timecount++;
+	                }
+	            if(timecount > nums.length / 2){
+	                System.out.println(nums[index]);
+	            }
+	        }
+	    	}
+	       if(n % 2 ==1){
+	            for(int index=0;index<nums.length;index++){
+	                int timecount =0;
+	                if(nums[index] == nums[index+1]){
+	                    timecount++;
+	                }
+	            if(timecount>(nums.length-1)/2){
+	                System.out.println(nums[index]);
+	            }
+	            }
+	        }
+}
+}	    
+	
+Q3
+
+public class Solution {
+	
+	    public boolean isValid(String s) {
+	    	
+	        for(int i=0; i<s.length();i++){
+	        	
+	            String a = "(";
+	            String b = ")";
+	            String c = "[";
+	            String d = "]";
+	            String e = "{";
+	            String f = "}";
+
+	            if(s.substring(i).equals(a) && s.substring(i+1).equals(b)){
+	                return true;
+	            }
+	            if(s.substring(i).equals(c) && s.substring(i+1).equals(d)){
+	                return true;
+	            }
+	            if(s.substring(i).equals(e) && s.substring(i+1).equals(f)){
+	                return true;
+	            }
+	            else 
+	                return false;
+	        }
+			return false;
+
+	    }
+	}
+
+
+Q4
+
+
+

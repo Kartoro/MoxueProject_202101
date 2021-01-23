@@ -1,0 +1,43 @@
+ 	First
+import java.io.*;
+class test  
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+	    int h,d,u;
+	    for(int i =100; i <1000; i++){
+	      	h = i/100;
+		    d = i%100/10;
+		    u = i%10;  
+		    
+		    if(h*h*h+d*d*d+u*u*u == i){
+		        System.out.println(i);
+		    }
+	        
+	    }
+		
+	}
+}
+
+Second
+
+class Solution {
+    public int majorityElement(int[] nums) {
+         int index = -1;
+       
+        HashMap<Integer,Integer>map = new HashMap<Integer,Integer>();
+        for(int i; i < nums.length; i++){
+            if(map.getkey == numd[i])){
+             map.put(nums[i], map.get(nums[i])+1);
+            }
+
+            if(map.get(nums[i]) > nums.length/2){
+                index = i
+            }
+
+        }
+        System.out.println(nums[i]);
+         
+    }
+    
+}

@@ -1,0 +1,17 @@
+public class Solution {
+    public void printNarcissisticNum() {
+        int unit;
+        int tenDigit;
+        int hundred;
+        int sum;
+        for (int i = 100; i < 1000; i++) {
+            unit = i % 10;
+            tenDigit = i / 10 % 10;
+            hundred = i / 100;
+            sum = (int) (Math.pow(unit, 3) + Math.pow(tenDigit, 3) + Math.pow(hundred, 3));
+            if (sum == i) {
+                System.out.println(i);
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+public class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
+        for (Character character : s.toCharArray()) {
+            if (character == '(' || character == '{' || character == '[') {
+                stack.push(character);
+            } else {
+                Character left = stack.pop();
+                if (left != character) {
+                    return false;
+                }
+            }
+        }
+        return stack.empty();
+    }
+}

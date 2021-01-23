@@ -15,5 +15,25 @@ def majorityElement(nums):
 
 
 def isValid( s: str) -> bool:
-    print(s.split())
-    return True
+    dic = {')':'(', '}':'{',']':'['}
+    stack = []
+    if len(s)%2 != 0:
+        return False
+    for i in range(0, len(s)):
+        if s[i:i+1] in dic.keys():
+            if len(stack)==0 or stack[-1] != dic[s[i:i+1]]:
+#                 print(stack)
+                return False
+            else:
+                stack.pop()
+#                 print(stack)
+        else:
+            stack.append(s[i:i+1])
+#             print(stack)
+            
+#     print(stack)
+    if len(stack)==0:
+        return True
+    else:
+        return False
+    

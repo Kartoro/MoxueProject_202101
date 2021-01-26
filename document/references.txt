@@ -15,3 +15,13 @@ Git vs SVN: https://juejin.cn/post/6844903619813179405
 ----2021.01.31----
 
 Linux基础：https://juejin.cn/post/6844903634036064269
+
+Linux在线终端：https://www.jianshu.com/p/02018ef080c8
+
+Linux虚拟机 - VMware： http://c.biancheng.net/view/714.html
+
+内核态 vs 用户态：https://blog.csdn.net/youngyoungla/article/details/53106671
+
+内核空间 vs 用户空间：https://www.cnblogs.com/xingmuxin/p/10967548.html
+
+微内核 vs 宏内核：https://zhuanlan.zhihu.com/p/53612117

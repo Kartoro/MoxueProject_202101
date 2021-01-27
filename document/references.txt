@@ -20,6 +20,8 @@ Linux在线终端：https://www.jianshu.com/p/02018ef080c8
 
 Linux虚拟机 - VMware： http://c.biancheng.net/view/714.html
 
+Linux文件系统：https://blog.csdn.net/zhangpower1993/article/details/52213030
+
 内核态 vs 用户态：https://blog.csdn.net/youngyoungla/article/details/53106671
 
 内核空间 vs 用户空间：https://www.cnblogs.com/xingmuxin/p/10967548.html

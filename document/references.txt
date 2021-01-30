@@ -14,6 +14,12 @@ Git vs SVN: https://juejin.cn/post/6844903619813179405
 
 ----2021.01.31----
 
+Java字符串常用操作：https://blog.csdn.net/u012582267/article/details/13168469
+
+String、StringBuffer和StringBuilder的区别：https://www.jianshu.com/p/8c724dd28fa4
+
+Java StringBuilder和StringBuffer源码分析：https://segmentfault.com/a/1190000004261063
+
 Linux基础：https://juejin.cn/post/6844903634036064269
 
 Linux在线终端：https://www.jianshu.com/p/02018ef080c8

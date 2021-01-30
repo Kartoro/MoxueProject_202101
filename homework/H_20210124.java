@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class H_20210124 {
 
     public static void main(String[] args) {
@@ -7,6 +9,7 @@ public class H_20210124 {
 
     }
 
+    // leetcode Q.35
     public static int searchInsertLocation(int[] nums, int target) {
 
         if (nums.length == 0) {
@@ -30,6 +33,7 @@ public class H_20210124 {
 
     }
 
+    // leetcode Q.64
     public int minPathSum(int[][] grid) {
 
         if (grid == null || grid.length == 0) {
@@ -54,4 +58,30 @@ public class H_20210124 {
         return dynamicMatrix[0][0];
     }
 
+
+    // leetcode Q.73
+    public void zeroMatrix(int[][] matrix) {
+
+
+        ArrayList rowList = new ArrayList();
+        ArrayList columnList = new ArrayList();
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (matrix[i][j] == 0) {
+                    rowList.add(i);
+                    columnList.add(j);
+                }
+            }
+        }
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (rowList.contains(i) || columnList.contains(j)) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+
+    }
 }

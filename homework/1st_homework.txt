@@ -1,0 +1,25 @@
+//Q1: leetcode:35
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+        int position = 0;
+
+        if(nums[0] > target){
+            return position;
+        }
+        for (int i = 0; i < nums.length; i++){
+            if (nums[i] == target){
+                position = i;
+                break;
+            }
+            else if (nums[i] < target & nums[i + 1] >= target)
+            {
+                position = i + 1;
+                break;
+            }
+
+        }
+        return position;
+    }
+}
+
+//Q2&Q3: 对二维数组不熟，看了题解自己敲代码还是感觉到很困难。。。

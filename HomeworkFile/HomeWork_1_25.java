@@ -57,7 +57,7 @@ public class HomeWork {
             return path[m - 1][n - 2]<path[m-2][n - 1]?path[m - 1][n - 2]+ grid[m -1][n-1]:path[m-2][n - 1]+ grid[m -1][n-1];
 
     }
-    //question73
+    //question73 修改后
     public void setZeroes(int[][] matrix) {
         if(matrix == null || matrix.length == 0 || matrix[0].length==0){
             return;
@@ -65,29 +65,52 @@ public class HomeWork {
         int m = matrix.length; //行数
         int n = matrix[0].length; //列数
 
-        ArrayList<Integer> myIndex1 = new ArrayList<Integer>();
-        ArrayList<Integer> myIndex2 = new ArrayList<Integer>();
-        for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
+        boolean a= false,b = false;
+        for (int[] ints : matrix) {
+            if (ints[0] == 0) {
+                a = true;
+                break;
+            }
+        }
+        for(int i =0; i<n;i++){
+            if (matrix[0][i] == 0) {
+                b = true;
+                break;
+            }
+        }
+        if(a&&b)
+            matrix[0][0] = 0;
+        for(int i = 1;i<m;i++){
+            for(int j = 1;j<n;j++){
                 if(matrix[i][j]==0){
-                    if(myIndex1.indexOf(i)== -1)
-                        myIndex1.add(i);
-                    if(myIndex2.indexOf(j)== -1)
-                        myIndex2.add(j);
+                    matrix[i][0]=0;
+                    matrix[0][j]=0;
+                }
+            }
+        }
+        for(int i = 1;i<m;i++){
+            for(int j = 1;j<n;j++){
+                if(matrix[0][j]==0 || matrix[i][0]==0){
+                    matrix[i][j]=0;
                 }
             }
         }
 
-        for(int i=0;i<myIndex1.size();i++){
-            for(int j=0;j<n;j++){
-                matrix[myIndex1.get(i)][j]=0;
-            }
-        }
-        for(int i=0;i<myIndex2.size();i++){
-            for(int j=0;j<m;j++){
-                matrix[j][myIndex2.get(i)]=0;
-            }
-        }
+        if(matrix[0][0]==0){
+            for(int i =0; i<m;i++)
+                matrix[i][0] = 0;
 
+            for(int j =0; j<n;j++)
+                matrix[0][j] = 0;
+
+
+        }else if(a){
+            for(int i =0; i<m;i++)
+                matrix[i][0] = 0;
+        }else if(b){
+            for(int j =0; j<n;j++)
+                matrix[0][j] = 0;
+        }
     }
 }
+

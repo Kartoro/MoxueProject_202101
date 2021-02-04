@@ -19,4 +19,22 @@ public class week2{
         }
         return true;
     }
+
+    public int firstUniqChar(String s) {
+        if(s.length() == 1)
+            return 0;
+        for(int n = 0;n<s.length();n++)
+        {
+            char c = s.charAt(n);
+            for(int l = 0;l<s.length();l++)
+            {
+                char c1 = s.charAt(l);
+                if (l != n && c == c1)
+                    break;
+                if (l == s.length()-1)
+                    return n;
+            }
+        }
+        return -1;
+    }
 }

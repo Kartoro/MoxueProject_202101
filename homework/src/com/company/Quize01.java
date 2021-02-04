@@ -16,4 +16,22 @@ public class Quize01 {
     }
 }
 
-}
+    public int majorityElement(int[] nums) {
+        int n = 0;
+        int m;
+        for(int k = 0;k< nums.length;k++)
+        {
+            m = 0;
+            n = nums[k];
+            for(int l = 0;l<nums.length;l++)
+            {
+                if(nums[l]==n)
+                    m++;
+            }
+            if(m>nums.length/2+0.5)
+                break;
+        }
+        return n;
+    }
+    }
+

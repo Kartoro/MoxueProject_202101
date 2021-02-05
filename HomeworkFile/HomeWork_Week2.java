@@ -150,4 +150,28 @@ public class HomeWork_Week2 {
 
         return returnResults;
     }
+
+    //1737. 满足三条件之一需改变的最少字符数
+    public int minCharacters(String a, String b) {
+        int alen = a.length(),blen = b.length();
+        int[] aArray = new int[26],bArray = new int[26];
+        int minCharacter = Integer.MAX_VALUE;
+        for(char s : a.toCharArray()){
+            aArray[s-'a'] = aArray[s-'a']+1;
+        }
+        for(char s : b.toCharArray()){
+            bArray[s-'a'] = bArray[s-'a']+1;
+        }
+        int atotal = aArray[0];
+        int btotal = bArray[0];
+        for(int i =1;i<26;i++){
+            minCharacter = Math.min(alen - atotal + btotal, minCharacter);
+            minCharacter = Math.min(blen - btotal + atotal, minCharacter);
+            minCharacter = Math.min(alen + blen - aArray[i] - bArray[i], minCharacter);
+            atotal = atotal + aArray[i];
+            btotal = btotal + bArray[i];
+        }
+        minCharacter = Math.min(alen + blen - aArray[0] - bArray[0], minCharacter);
+        return minCharacter;
+    }
 }

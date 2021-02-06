@@ -1,4 +1,5 @@
 # LC 125 
+# 自己
 def isPalindrome( s: str) -> bool:
     s = s.lower()
     # print(s)
@@ -75,3 +76,65 @@ class Solution:
         if first == len(s):
             first = -1
         return first
+
+# LC 17
+# 自己 算是个队列
+def letterCombinations(digits: str):
+    dic = {'2':['a','b','c'],
+          '3':['d','e','f'],
+          '4':['g','h','i'],
+          '5':['j','k','l'],
+          '6':['m','n','o'],
+          '7':['p','q','r','s'],
+          '8':['t','u','v'],
+          '9':['w','x','y','z'],
+          }
+    target = []
+    if len(digits) == 0:
+        return target
+    for i in digits:
+        if len(target) == 0:
+            for j in dic[i]:
+                target.append(j)
+        else:
+            now_target = len(target)
+            for j in range(now_target):
+                repeat = target.pop(0)
+                for k in dic[i]:
+                    target.append(repeat+k)
+
+    return target
+
+# LC 22 
+# 暴力 每个左和右括号的左右都加一个（），判断是否符合
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        def insert_p(l):
+            final_return = []
+            num_target = len(l)
+            # print(l,num_target)
+            for i in range(num_target):
+                # print('i',i)
+                now = list(l.pop(0))
+                # print("now",now)
+                for j in range(len(now)+1):
+                    # print("j",j)
+                    now.insert(j,'()')
+                    targetList = now
+                    # print("now",now)
+                    target = ''.join(targetList)
+                    now.pop(j)
+                    # print("now",now)
+                    # print('target',target)
+                    if target not in final_return:
+                        final_return.append(target)
+                        # print("fr",final_return,"\d")
+            return final_return
+        
+        target = ["()"]
+        if n == 1:
+            return target 
+        else:
+            for i in range(1,n):
+                target = insert_p(target)
+            return target

@@ -1,0 +1,34 @@
+# No.125
+import string
+def isPalindrone(s):
+        s = s.upper()
+        pinl = 0
+        pinr = len(s)-1
+        while pinr > pinl:
+                if not s[pinl].isalnum():
+                        pinl += 1
+                        continue
+                if not s[pinr].isalnum():
+                        pinr -= 1
+                        continue
+                if s[pinl] == s[pinr]:
+                        pinl += 1
+                        pinr -= 1
+                else:
+                        return False
+        return True
+
+#print(isPalindrone("race a car"))
+
+# No. 387
+import collections
+def firstUniqChar(s):
+        frequency = collections.Counter(s)
+        print(frequency)
+        print(list(enumerate(s)))
+        for i, ch in enumerate(s):
+            if frequency[ch] == 1:
+                return i
+        return -1
+
+#@print(firstUniqChar("laaccffgg"))

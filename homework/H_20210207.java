@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class H_20210207 {
     public static void main(String[] args) {
 
@@ -59,31 +62,57 @@ public class H_20210207 {
     }
 
     //lc1590
+    public int minSubarray(int[] nums, int p) {
+
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            sum = (sum + nums[i]) % p;
+        }
+
+        if (sum == 0) return 0;
+
+        Map<Integer, Integer> intMap = new HashMap<>();
+        intMap.put(0, -1);
+        int currentNum = 0;
+        int subLength = nums.length;
+        for (int j = 0; j < nums.length; j++) {
+            currentNum = (currentNum + nums[j]) % p;
+            intMap.put(currentNum, j);
+            int target = (currentNum - sum + p) % p;
+            if (intMap.containsKey(target)) {
+                subLength = Math.min(subLength, j - intMap.get(target));
+            }
+        }
+
+        return subLength < nums.length ? subLength : -1;
+
+
+    }
 
 
     //lc1733
     public int minimumTeachings(int n, int[][] languages, int[][] friendships) {
 
-    }
 
+    }
 
 
     //lc875
     public static int minEatingSpeed(int[] piles, int H) {
         int count = 1;
-        while (count >= 0){
-            if (eatAll(piles, H, count)){
+        while (count >= 0) {
+            if (eatAll(piles, H, count)) {
                 return count;
             }
         }
     }
 
 
-    public static boolean eatAll(int piles[], int H, int count){
+    public static boolean eatAll(int piles[], int H, int count) {
         int time = 0;
-        for (int i = 0; i<piles.length; i++){
-            time += piles[i]/count+(piles[i]%count==0?0:1);
-            if (time > H){
+        for (int i = 0; i < piles.length; i++) {
+            time += piles[i] / count + (piles[i] % count == 0 ? 0 : 1);
+            if (time > H) {
                 return false;
             }
         }
@@ -92,8 +121,6 @@ public class H_20210207 {
 
 
     //lc480
-
-
 
 
 }

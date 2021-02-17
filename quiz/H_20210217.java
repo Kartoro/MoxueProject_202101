@@ -3,8 +3,7 @@ import java.util.Stack;
 public class H_20210217 {
     public static void main(String[] args){
 
-
-
+        System.out.println(basicCalculator("2-1*3+1"));
 
     }
 
@@ -64,6 +63,10 @@ public class H_20210217 {
         return result;
 
     }
+
+
+
+
 
 
 }

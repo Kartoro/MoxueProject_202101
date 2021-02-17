@@ -1,8 +1,11 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class H_20210207 {
     public static void main(String[] args) {
+
+        int []temperatures = {73, 74, 75, 71, 69, 72, 76, 73};
+        System.out.println(Arrays.toString(dailyTemperatures(temperatures)));
+
 
     }
 
@@ -88,39 +91,86 @@ public class H_20210207 {
 
 
     }
+//
+//
+//    //lc1733
+//    public int minimumTeachings(int n, int[][] languages, int[][] friendships) {
+//
+//
+//    }
+//
+//
+//    //lc875
+//    public static int minEatingSpeed(int[] piles, int H) {
+//        int count = 1;
+//        while (count >= 0) {
+//            if (eatAll(piles, H, count)) {
+//                return count;
+//            }
+//        }
+//    }
+//
+//
+//    public static boolean eatAll(int piles[], int H, int count) {
+//        int time = 0;
+//        for (int i = 0; i < piles.length; i++) {
+//            time += piles[i] / count + (piles[i] % count == 0 ? 0 : 1);
+//            if (time > H) {
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
+//
+//
+//    //lc480
 
 
-    //lc1733
-    public int minimumTeachings(int n, int[][] languages, int[][] friendships) {
+    public static int [] dailyTemperature(int [] T){
+        int [] result = new int[T.length];
+        Arrays.fill(result, 0);
 
-
-    }
-
-
-    //lc875
-    public static int minEatingSpeed(int[] piles, int H) {
-        int count = 1;
-        while (count >= 0) {
-            if (eatAll(piles, H, count)) {
-                return count;
+        int max = 0;
+        int maxPosition = 0;
+        for (int j = 0; j < T.length; j++){
+            if (T[j]> max){
+                max = T[j];
+                maxPosition = j;
             }
         }
-    }
 
+        for (int i = T.length - 1; i >= 0; i--){
 
-    public static boolean eatAll(int piles[], int H, int count) {
-        int time = 0;
-        for (int i = 0; i < piles.length; i++) {
-            time += piles[i] / count + (piles[i] % count == 0 ? 0 : 1);
-            if (time > H) {
-                return false;
+            if (T[i] < max && i >= maxPosition){
+                result[i] = 0;
+            }else if (T[i] < max && i < maxPosition){
+                int index = maxPosition - i;
+                result[i] = index;
             }
         }
-        return true;
+
+        return result;
     }
 
+    public static int [] dailyTemperatures(int [] T){
+        int totalLength = T.length;
+        int [] result = new int[T.length];
+        Arrays.fill(result, 0);
 
-    //lc480
+        Stack<Integer> tStack = new Stack<>();
+        for (int i = 0; i < totalLength; i++){
+            int currentT = T[i];
+            while (!tStack.isEmpty() && currentT > T[tStack.peek()]){
+                int preIndex = tStack.pop();
+                result[preIndex] = i - preIndex;
+
+            }
+
+            tStack.push(i);
+        }
+        return result;
+
+    }
 
 
 }

@@ -1,16 +1,7 @@
-public class Quiz1 {
-
-    public static void main (String[] args) {
-
-        String sequence = "abcdacadabcdabcdas";
-        String word = "abcd";
-
-        Exam1.Quiz1 quiz1 = new Exam1.Quiz1();
-        System.out.println(quiz1.method(sequence, word));
-
-    }
-
-    public int method (String sequence, String word){
+// Leetcode.1668 最大重复子字符串
+class Solution {
+    public int maxRepeating(String sequence, String word) {
+        
         if (sequence == null || sequence.length() == 0){
             return 0;
         }
@@ -19,25 +10,29 @@ public class Quiz1 {
             return 0;
         }
 
-        int i = 0;
-        int j  = 0;
+        int slow = 0;
+        int fast = 0;
+        int wordIndex  = 0;
         int count = 0;
         int maxCount = 0;
-        while (i < sequence.length()){
-            if (sequence.charAt(i) == word.charAt(j)){
-                while (sequence.charAt(i) == word.charAt(j)){
-                    i++;
-                    j++;
-                    if (j == word.length()){
+        while (fast < sequence.length()){
+            if (sequence.charAt(fast) == word.charAt(wordIndex)){
+                while (fast < sequence.length() && sequence.charAt(fast) == word.charAt(wordIndex)){
+                    fast++;
+                    wordIndex++;
+                    if (wordIndex == word.length()){
                         count += 1;
                         maxCount = Math.max(maxCount, count);
-                        j = 0;
+                        wordIndex = 0;
                     }
                 }
                 count = 0;
-                j = 0;
+                wordIndex = 0;
+                //使index逐位递进
+                slow++;
+                fast = slow;
             } else {
-                i++;
+                fast++;
             }
         }
         return maxCount;

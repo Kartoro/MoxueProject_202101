@@ -2,9 +2,9 @@ public class substring {
     public static void main(String[] args){
 
 
-        System.out.println(maxRepeating("ababc","ab"));
+        System.out.println(maxRepeating("ababc","ba"));
     }
-    public int maxRepeating(String sequence, String word) {
+    public static int maxRepeating(String sequence, String word) {
         int len = word.length();
         int left =0;
         int right =len-1;

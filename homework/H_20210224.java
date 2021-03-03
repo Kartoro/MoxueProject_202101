@@ -134,8 +134,7 @@ public class H_20210224 {
             for (int n = 0; n < w; n++) {
                 if (grid[m][n] == 2) {
                     q.add(new int[]{m, n});
-                }
-                else if (grid[m][n] == 1) {
+                } else if (grid[m][n] == 1) {
                     fresh++;
                 }
             }
@@ -190,7 +189,7 @@ public class H_20210224 {
 
     //lc 42
     public int trap(int[] height) {
-        if (height == null || height.length == 0){
+        if (height == null || height.length == 0) {
             return 0;
         }
         int sum = 0;
@@ -201,25 +200,68 @@ public class H_20210224 {
         left_max[0] = height[0];
         right_max[size - 1] = height[size - 1];
 
-        for (int i = 1; i < size; i++){
-            left_max[i] = Math.max(height[i],height[i-1]);
+        for (int i = 1; i < size; i++) {
+            left_max[i] = Math.max(height[i], left_max[i - 1]);
         }
 
-        for (int j = size - 2; j >=0; j--){
-            right_max[j] = Math.max(height[j], height[j+1]);
+        for (int j = size - 2; j >= 0; j--) {
+            right_max[j] = Math.max(height[j], right_max[j + 1]);
         }
 
-        for (int m = 1; m < size-1; m++){
-            sum += Math.max(left_max[m], right_max[m]) - height[m];
+        for (int m = 1; m < size - 1; m++) {
+            sum += Math.min(left_max[m], right_max[m]) - height[m];
         }
 
         return sum;
     }
 
     //lc 567
+    public boolean checkInclusion(String s1, String s2) {
+        int m = s1.length(), n = s2.length();
+        if (m > n) {
+            return false;
+        }
+
+        int[] count = new int[26];
+
+        for (char c : s1.toCharArray()) {
+            count[c - 'a']++;
+        }
 
 
+        int[] fullCount = new int[26];
+        for (char c: s2.toCharArray()){
+            fullCount[c-'a']++;
+        }
 
+        if (checkSub(count, fullCount)){
+            return true;
+        }
+
+        for (int j = m; j < n; j++){
+            fullCount[s2.charAt(j) - 'a']++;
+            fullCount[s2.charAt(j-m) - 'a']--;
+            if (checkSub(count,fullCount)){
+                return true;
+            }
+        }
+
+        return false;
+
+
+    }
+
+    boolean checkSub(int [] c1, int [] c2){
+        for (int i = 0; i < 26; i++){
+            if (c1[i] != c2[i]){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    //lc 832
 
 
 

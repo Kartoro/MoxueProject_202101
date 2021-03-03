@@ -209,12 +209,16 @@ public class H_20210224 {
             right_max[j] = Math.max(height[j], height[j+1]);
         }
 
-        for (int m = 0; m < size; m++){
+        for (int m = 1; m < size-1; m++){
             sum += Math.max(left_max[m], right_max[m]) - height[m];
         }
 
         return sum;
     }
+
+    //lc 567
+
+
 
 
 

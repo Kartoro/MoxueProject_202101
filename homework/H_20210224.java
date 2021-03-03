@@ -36,12 +36,13 @@ public class H_20210224 {
             }
         }
 
-        List<Character> s1List = new ArrayList<Character>(s1);
-        List<Character> s2List = new ArrayList<Character>(s2);
-
         if (s1.size() != s2.size()) {
             return false;
         }
+
+        List<Character> s1List = new ArrayList<Character>(s1);
+        List<Character> s2List = new ArrayList<Character>(s2);
+
 
         for (int k = 0; k < s1List.size(); k++) {
             if (s1List.get(k) != s2List.get(k)) {
@@ -53,4 +54,25 @@ public class H_20210224 {
 
 
     }
+
+    //lc 1021
+    public String removeOuterParentheses(String S) {
+        StringBuilder sb = new StringBuilder();
+        int level = 0;
+        for (char c : S.toCharArray()) {
+            if (c == ')') {
+                --level;
+            }
+            if (level >= 1) {
+                sb.append(c);
+            }
+            if (c == '(') {
+                ++level;
+            }
+        }
+        return sb.toString();
+
+    }
+
+
 }

@@ -262,6 +262,46 @@ public class H_20210224 {
     }
 
     //lc 832
+    public int[][] flipAndInvertImage(int[][] image) {
+        for(int i = 0; i < image.length; i++){
+            int length = image[i].length;
+            int left = 0;
+            int right = length-1;
+
+            while(left != right){
+                int lTmp = image[i][left];
+                int rTmp = image[i][right];
+                image[i][left] = rTmp;
+                image[i][right] = lTmp;
+
+                left++;
+                right--;
+
+                if(right < left){
+                    break;
+                }
+            }
+
+        }
+
+        for(int j = 0; j < image.length; j++){
+            for(int m = 0; m < image[0].length; m++){
+                if(image[j][m] == 0){
+                    image[j][m] = 1;
+                }else if(image[j][m] == 1){
+                    image[j][m] = 0;
+                }
+            }
+        }
+
+        return image;
+
+    }
+
+    //lc 766
+    public boolean isToeplitzMatrix(int[][] matrix) {
+
+    }
 
 
 

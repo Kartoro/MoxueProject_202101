@@ -230,18 +230,18 @@ public class H_20210224 {
 
 
         int[] fullCount = new int[26];
-        for (char c: s2.toCharArray()){
-            fullCount[c-'a']++;
+        for (char c : s2.toCharArray()) {
+            fullCount[c - 'a']++;
         }
 
-        if (checkSub(count, fullCount)){
+        if (checkSub(count, fullCount)) {
             return true;
         }
 
-        for (int j = m; j < n; j++){
+        for (int j = m; j < n; j++) {
             fullCount[s2.charAt(j) - 'a']++;
-            fullCount[s2.charAt(j-m) - 'a']--;
-            if (checkSub(count,fullCount)){
+            fullCount[s2.charAt(j - m) - 'a']--;
+            if (checkSub(count, fullCount)) {
                 return true;
             }
         }
@@ -251,9 +251,9 @@ public class H_20210224 {
 
     }
 
-    boolean checkSub(int [] c1, int [] c2){
-        for (int i = 0; i < 26; i++){
-            if (c1[i] != c2[i]){
+    boolean checkSub(int[] c1, int[] c2) {
+        for (int i = 0; i < 26; i++) {
+            if (c1[i] != c2[i]) {
                 return false;
             }
         }
@@ -263,12 +263,12 @@ public class H_20210224 {
 
     //lc 832
     public int[][] flipAndInvertImage(int[][] image) {
-        for(int i = 0; i < image.length; i++){
+        for (int i = 0; i < image.length; i++) {
             int length = image[i].length;
             int left = 0;
-            int right = length-1;
+            int right = length - 1;
 
-            while(left != right){
+            while (left != right) {
                 int lTmp = image[i][left];
                 int rTmp = image[i][right];
                 image[i][left] = rTmp;
@@ -277,18 +277,18 @@ public class H_20210224 {
                 left++;
                 right--;
 
-                if(right < left){
+                if (right < left) {
                     break;
                 }
             }
 
         }
 
-        for(int j = 0; j < image.length; j++){
-            for(int m = 0; m < image[0].length; m++){
-                if(image[j][m] == 0){
+        for (int j = 0; j < image.length; j++) {
+            for (int m = 0; m < image[0].length; m++) {
+                if (image[j][m] == 0) {
                     image[j][m] = 1;
-                }else if(image[j][m] == 1){
+                } else if (image[j][m] == 1) {
                     image[j][m] = 0;
                 }
             }
@@ -303,14 +303,13 @@ public class H_20210224 {
         int l = matrix.length;
         int w = matrix[0].length;
 
-        for(int i = 1; i < l; i++){
-            for(int j = 1; j < w; j++){
-                if(matrix[i][j] != matrix[i-1][j-1]){
+        for (int i = 1; i < l; i++) {
+            for (int j = 1; j < w; j++) {
+                if (matrix[i][j] != matrix[i - 1][j - 1]) {
                     return false;
                 }
             }
         }
-
 
 
         return true;
@@ -318,34 +317,50 @@ public class H_20210224 {
 
     //lc 1052
     public int maxSatisfied(int[] customers, int[] grumpy, int X) {
-        int sum = 0;
+        // total not angry added
+        int totalNotAngry = 0;
         int length = customers.length;
-        for (int i = 0; i < length; i++){
+        for (int i = 0; i<length; i++){
             if (grumpy[i] == 0){
-                sum += customers[i];
+                totalNotAngry += customers[i];
             }
         }
 
-        int customerSwitch = 0;
-        for (int j = 0; j <X; j++){
-            customerSwitch += customers[j] + grumpy[j];
+        // first range added
+        int firstRange = 0;
+        for (int j = 0; j < X; j++){
+            if (grumpy[j] == 1){
+                firstRange += customers[j];
+            }
         }
 
-        int maxCustomerSwith = customerSwitch;
-        for (int m = X; m < length; m++){
-            customerSwitch = customerSwitch - customers[m - X] * grumpy[m-X] + customers[m] + grumpy[m];
-            maxCustomerSwith = Math.max(maxCustomerSwith, customerSwitch);
+        int maxAngryRange = firstRange;
+        int right = X;
+        int left = 0;
+        while (right < length){
+            if (grumpy[right] == 1){
+                firstRange += customers[right];
+            }
+
+            if (grumpy[left] == 1){
+                firstRange -= customers[left];
+            }
+            maxAngryRange = Math.max(maxAngryRange, firstRange);
+            right++;
+            left++;
         }
 
-        return sum + maxCustomerSwith;
-
+        return maxAngryRange + totalNotAngry;
     }
 
 
     //lc 6
+    public String convert(String s, int numRows) {
+        if (numRows == 1){
+            return s;
+        }
 
-
-
+    }
 
 
 }

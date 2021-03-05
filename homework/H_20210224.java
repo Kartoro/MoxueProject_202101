@@ -300,7 +300,20 @@ public class H_20210224 {
 
     //lc 766
     public boolean isToeplitzMatrix(int[][] matrix) {
+        int l = matrix.length;
+        int w = matrix[0].length;
 
+        for(int i = 1; i < l; i++){
+            for(int j = 1; j < w; j++){
+                if(matrix[i][j] != matrix[i-1][j-1]){
+                    return false;
+                }
+            }
+        }
+
+
+
+        return true;
     }
 
 

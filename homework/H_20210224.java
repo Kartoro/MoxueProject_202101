@@ -316,6 +316,35 @@ public class H_20210224 {
         return true;
     }
 
+    //lc 1052
+    public int maxSatisfied(int[] customers, int[] grumpy, int X) {
+        int sum = 0;
+        int length = customers.length;
+        for (int i = 0; i < length; i++){
+            if (grumpy[i] == 0){
+                sum += customers[i];
+            }
+        }
+
+        int customerSwitch = 0;
+        for (int j = 0; j <X; j++){
+            customerSwitch += customers[j] + grumpy[j];
+        }
+
+        int maxCustomerSwith = customerSwitch;
+        for (int m = X; m < length; m++){
+            customerSwitch = customerSwitch - customers[m - X] * grumpy[m-X] + customers[m] + grumpy[m];
+            maxCustomerSwith = Math.max(maxCustomerSwith, customerSwitch);
+        }
+
+        return sum + maxCustomerSwith;
+
+    }
+
+
+    //lc 6
+
+
 
 
 

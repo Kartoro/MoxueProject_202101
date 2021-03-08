@@ -1,0 +1,157 @@
+之前过年一直在打酱油。。。现在算法作业 来跟上。。。
+
+leetcode 48 反复去复习！！！
+
+leetcode 35 
+看到有序直接想到二分法
+位操作：  >>    << 
+（右 - 左）/2 + 左   ： 二分法标准格式， 防止溢出
+why  左/2 + 右 /2 ？  ： 两次除法意味着两次位操作，效率低
+
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+        int n = nums.length;
+        int left = 0;
+        int right = n - 1;
+        while (left <= right) {
+            int mid = (right - left)/2 + left;
+            if (nums[mid] == target) {
+                return mid;
+            }
+            else if (nums[mid] < target) {
+                left = mid +1;
+            }                
+            else {
+                right = mid -1;
+            }
+        }
+        return left;
+    }
+}
+
+
+
+leetcode 64
+动态规划   每走一步都能成为新的子问题，一个子问题一个子问题的嵌套。
+核心思想： 用空间换时间！！！
+
+class Solution {
+    public int minPathSum(int[][] grid) {
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (i == 0 && j == 0) 
+                    continue;
+                else if (i == 0) 
+                    grid[i][j] = grid[i][j - 1] + grid[i][j];
+                else if (j == 0)
+                    grid[i][j] = grid[i -1][j] + grid[i][j];
+                else 
+                    grid[i][j] = Math.min(grid[i -1][j], grid[i][j - 1]) + grid[i][j];
+            }
+        }
+        return grid[grid.length - 1][grid[0].length - 1];
+    }
+}
+
+leetcode 73
+
+思路一：利用 O（m+n）额外空间
+Set<Integer>   储存Object 数据类型
+HashSet<>()     基于hashcode来实现的
+任意长度的值映射成一个定长的值  映射有可能损失数据
+哈希碰撞！！！
+hashcode 不相等，绝对不相等
+hashcode 相等，equal去判断
+
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        Set<Integer> zero_row = new HashSet<>();
+        Set<Integer> zero_col = new HashSet<>();
+        int row = matrix.length;
+        int col = matrix[0].length;
+        for (int i = 0; i < row; i++){
+            for (int j = 0; j < col; j++){
+                if (matrix[i][j] == 0){
+                    zero_row.add(i);
+                    zero_col.add(j);
+                }
+            }
+        }
+        for (int i = 0; i < row; i++){
+            for (int j = 0; j < col; j++){
+                if (zero_row.contains(i) || zero_col.contains(j)){
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+    }
+}
+
+思路二： 
+利用O(1）空间
+先拿第一行第一列作为标志位
+
+评价：方法巧妙，但是显得有点为了做题而去做题？
+
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        int row = matrix.length;
+        int col = matrix[0].length;
+        boolean row0_flag = false;
+        boolean col0_flag = false;
+        //check if have zero in first row
+        for (int j = 0; j < col; j++){//use col to judge row 0
+            if (matrix[0][j] == 0){
+                row0_flag = true;
+                break;
+            }
+        }
+        //check if have zero in first col
+        for (int i = 0; i < row; i++){
+            if (matrix[i][0] == 0){
+                col0_flag = true;
+                break;
+            }
+        }
+        // set flag position in first row and col
+        for (int i = 1; i < row; i++){
+            for (int j = 1; j < col; j++){
+                if (matrix[i][j] == 0){
+                    matrix[i][0] = 0;
+                    matrix[0][j] = 0;
+                }
+            }
+        }
+        //set 0 in row and col
+        for (int i = 1; i < row; i++){
+            for (int j = 1; j < col; j++){
+                if (matrix[i][0] == 0 || matrix[0][j] == 0){
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+        if (row0_flag) {
+            for (int j = 0; j < col; j++){//use col to judge row 0
+                matrix[0][j] = 0;
+            }
+        }
+        if (col0_flag) {
+            for (int i = 0; i < row; i++){
+                matrix[i][0] = 0;
+            }
+        }
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+

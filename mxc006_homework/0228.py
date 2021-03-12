@@ -94,3 +94,22 @@ class Solution:
             res = max(res, countAll(customers,lists))
         return res
 
+# LC 6
+class Solution:
+    def convert(self, s: str, numRows: int) -> str:
+        if numRows == 1:
+            return s
+        resStr = ''
+        resList = []
+        for i in range(numRows):
+            resList.append([]) 
+        z = numRows * 2 - 2
+        for i in range(len(s)):
+            if (i) % z < numRows:
+                resList[(i)%z].append(s[i])
+            else:
+                loc = i%z % numRows
+                resList[-loc-2].append(s[i])
+        for i in resList:
+            resStr += ''.join(i)
+        return resStr

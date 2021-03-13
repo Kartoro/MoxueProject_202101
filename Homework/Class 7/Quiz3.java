@@ -2,29 +2,21 @@
 
 class RecentCounter {
 
-    ArrayList<Integer> times;
+    Queue<Integer> times;
 
     public RecentCounter() {
-        times = new ArrayList<>();
+        times = new LinkedList<>();
     }
 
     public int ping(int t) {
 
-        times.add(t);
+        times.offer(t);
 
-        int count = 0;
-        for (int each : times){
-
-            if (each > t){
-                break;
-            } else if (each >= t - 3000) {
-                count++;
-            } else {
-                continue;
-            }
+        while (times.peek() < t -3000) {
+            times.poll();
         }
 
-        return count;
+        return times.size();
     }
 
 }

@@ -69,16 +69,43 @@ class Solution:
             return l2
 
 # LC203
-# 自己
+# 自己 超时
 class Solution:
     def removeElements(self, head: ListNode, val: int) -> ListNode:
-        if not head:
-            return head
+        # if not head:
+        #     return head
 
         res = ListNode(0,head)
         cur = res
-        while cur:
+        while cur.next:
+            print(cur)
             if cur.next.val == val:
                cur.next = cur.next.next
-            cur = cur.next   
+            else:
+                cur = cur.next   
         return res.next
+
+# 解题 迭代
+    def removeElements(self, head: ListNode, val: int) -> ListNode:
+        res = ListNode(0,head)
+        
+        prev, curr = res, head
+        while curr:
+            if curr.val == val:
+                prev.next = curr.next
+            else:
+                prev = curr
+            curr = curr.next
+
+        return res.next
+        
+# 解题 递归
+    def removeElements(self, head: ListNode, val: int) -> ListNode:
+        if not head:
+            return None
+        
+        head.next = self.removeElements(head.next,val)
+        if head.val == val:
+            return head.next
+        else:
+            return head

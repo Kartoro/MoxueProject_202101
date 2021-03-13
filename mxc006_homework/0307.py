@@ -67,3 +67,18 @@ class Solution:
         else:
             l2.next = self.mergeTwoLists(l1, l2.next)
             return l2
+
+# LC203
+# 自己
+class Solution:
+    def removeElements(self, head: ListNode, val: int) -> ListNode:
+        if not head:
+            return head
+
+        res = ListNode(0,head)
+        cur = res
+        while cur:
+            if cur.next.val == val:
+               cur.next = cur.next.next
+            cur = cur.next   
+        return res.next

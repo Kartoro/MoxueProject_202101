@@ -70,6 +70,29 @@ public class H_20210314 {
     }
 
     public Node copyRandomList(Node head) {
+        if (head == null){
+            return null;
+        }
+
+        Node pre = head;
+        while(pre != null){
+            Node tmpNode = new Node(pre.val);
+            tmpNode.next = pre.next;
+            pre.next = tmpNode;
+            pre = tmpNode.next;
+        }
+
+        pre = head;
+        while(pre != null){
+            if(pre.random != null){
+                pre.next.random = pre.random.next;
+            }
+
+            pre = pre.next.next;
+        }
+
+        
+
         
     }
 

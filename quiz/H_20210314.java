@@ -91,6 +91,18 @@ public class H_20210314 {
             pre = pre.next.next;
         }
 
+        Node dummpNode = new Node(-1);
+        pre = head;
+        Node currentNode = dummpNode;
+        while(pre != null){
+            currentNode.next = pre.next;
+            currentNode = currentNode.next;
+            pre.next = currentNode.next;
+            pre = pre.next;
+        }
+
+        return dummpNode.next;
+
         
 
         

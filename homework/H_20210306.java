@@ -176,5 +176,13 @@ public class H_20210306 {
     }
 
 
+    //剑指offer 52
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        
+    }
+
+    
+
+
 
 }

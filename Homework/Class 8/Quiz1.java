@@ -1,5 +1,6 @@
 // Leetcode.567 字符串的排列
 
+// 方法一: 对窗口内字母排序
 class Solution {
 
     public boolean checkInclusion(String s1, String s2) {
@@ -25,6 +26,44 @@ class Solution {
         }
 
         return false;
+    }
+
+}
+
+// 方法二: 统计窗口中每个字母个数
+class Solution {
+
+    public boolean checkInclusion(String s1, String s2) {
+
+        int[] s1Freq = new int[26];
+        int[] s2Freq = new int[26];
+
+        for (char each : s1.toCharArray()){
+            s1Freq[each - 'a']++;
+        }
+        
+        int start = 0;
+        int end = 0;
+
+        while (end < s2.length()){
+
+            s2Freq[s2.charAt(end) - 'a']++;
+            end++;
+
+            if (Arrays.equals(s1Freq, s2Freq)) {
+                return true;
+            }
+
+            // 滑动窗口拓展
+            if (end - start >= s1.length()){
+                s2Freq[s2.charAt(start) - 'a']--;
+                start += 1;
+            }
+
+        }
+
+        return false;
+
     }
 
 }

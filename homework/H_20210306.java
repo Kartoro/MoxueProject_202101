@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class H_20210306 {
 
 
@@ -176,12 +179,54 @@ public class H_20210306 {
     }
 
 
-    //剑指offer 52
-    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        
+//    //剑指offer 52
+//    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+//
+//    }
+
+
+
+      public class TreeNode {
+          int val;
+          TreeNode left;
+        TreeNode right;
+          TreeNode(int x) { val = x; }
+      }
+
+
+
+    public TreeNode reConstructBinaryTree(int [] pre,int [] in) {
+        List<Integer> preList = new ArrayList<>();
+        List<Integer> inList = new ArrayList<>();
+
+        for(int i = 0; i < pre.length; i++){
+            preList.add(pre[i]);
+            inList.add(in[i]);
+
+        }
+
+        return builder(preList, inList);
+
     }
 
-    
+    public TreeNode builder(List<Integer> preList, List<Integer> inList){
+        if (inList.isEmpty()){
+            return null;
+        }
+
+        int rootVal = preList.remove(0);
+
+
+        TreeNode root = new TreeNode(rootVal);
+
+
+        int rootIndex = inList.indexOf(rootVal);
+
+        root.left = builder(preList, inList.subList(0,rootIndex));
+        root.right = builder(preList, inList.subList(rootIndex + 1, inList.size()));
+
+        return root;
+    }
 
     
 

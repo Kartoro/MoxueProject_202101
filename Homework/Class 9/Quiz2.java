@@ -3,24 +3,23 @@
 class Solution {
     public ListNode removeElements(ListNode head, int val) {
 
-        ListNode slow = new ListNode();
-        slow.next = head;
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
 
-        ListNode dummy = new ListNode(0, slow);
+        ListNode prev = dummy;
+        ListNode curr = head;
 
-        while (head != null) {
+        while (curr != null) {
 
-            if (head.val == val){
-                slow.next = head.next;
-                head = head.next;
+            if (curr.val == val){
+                prev.next = curr.next;
             } else {
-                head = head.next;
-                slow = slow.next;
+                prev = curr;
             }
-
+            curr = curr.next;
         }
 
-        return dummy.next.next;
+        return dummy.next;
 
     }
 }

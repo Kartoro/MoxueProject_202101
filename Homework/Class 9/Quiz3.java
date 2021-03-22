@@ -3,79 +3,39 @@
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 
-        ListNode l1Pointer = l1;
-        ListNode l2Pointer = l2;
-
-        int ones = 0;
-        int tens = 0;
-
         ListNode dummy = new ListNode();
-        ListNode newListNode = new ListNode();
-        dummy.next = newListNode;
+        ListNode curr = dummy;
 
+        int carry = 0;
 
-        while (l1Pointer != null && l2Pointer != null) {
+        while (l1 != null || l2 != null) {
 
-            ListNode currentNode = new ListNode();
+            // 若两个链表不等长, 则短的链表用0补位
+            int l1Val = l1 == null ? 0 : l1.val;
+            int l2Val = l2 == null ? 0 : l2.val;
 
-            ones = (l1Pointer.val + l2Pointer.val) % 10;
+            int sum = l1Val + l2Val + carry;
 
-            int finalOnes = 0;
-            int finalTens = 0;
-            if (ones + tens >= 10) {
-                finalOnes = (ones + tens) % 10;
-                finalTens = (ones + tens) / 10;
-                currentNode = new ListNode(finalOnes);
-            } else {
-                currentNode = new ListNode(ones + tens);
+            carry = sum / 10;
+            int ones = sum % 10;
+
+            curr.next = new ListNode(ones);
+            curr = curr.next;
+
+            if (l1 != null) {
+                l1 = l1.next;
             }
-            
-            newListNode.next = currentNode;
-            newListNode = newListNode.next;
-
-            tens = (l1Pointer.val + l2Pointer.val) / 10 + finalTens;
-
-            l1Pointer = l1Pointer.next;
-            l2Pointer = l2Pointer.next;
-        }
-
-        if (l1Pointer != null && l2Pointer == null){
-            while (l1Pointer != null) {
-                ones = (l1Pointer.val + tens) % 10;
-
-                ListNode currentNode = new ListNode(ones);
-
-                newListNode.next = currentNode;
-                newListNode = newListNode.next;
-
-                tens = (l1Pointer.val + tens) / 10;
-
-                l1Pointer = l1Pointer.next;
+            if (l2 != null) {
+                l2 = l2.next;
             }
         }
 
-        if (l1Pointer == null && l2Pointer != null){
-            while (l2Pointer != null) {
-                ones = (l2Pointer.val + tens) % 10;
-
-                ListNode currentNode = new ListNode(ones);
-
-                newListNode.next = currentNode;
-                newListNode = newListNode.next;
-
-                tens = (l2Pointer.val + tens) / 10;
-
-                l2Pointer = l2Pointer.next;
-            }
+        //如果最后仍需进位,需在最后再进一位
+        if (carry == 1){
+            curr.next = new ListNode (carry);
         }
 
-        if (tens > 0){
-            ListNode currentNode = new ListNode(tens);
-            newListNode.next = currentNode;
-        }
-        
-
-        return dummy.next.next;
+        return dummy.next;
 
     }
 }

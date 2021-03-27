@@ -115,5 +115,40 @@ public class H_20210313 {
         return l;
     }
 
+
+    //平衡二叉树
+    public boolean isBalanced(TreeNode root) {
+        if(root == null){
+            return true;
+        }
+
+        if (!isBalanced(root.left)){
+            return false;
+        }
+
+        if (!isBalanced(root.right)){
+            return false;
+        }
+
+        int l = getDepth(root.left);
+        int r = getDepth(root.right);
+        if (Math.abs(l-r) > 1){
+            return false;
+        }
+
+        return true;
+
+    }
+
+
+    private int getDepth(TreeNode node){
+        if (node == null){
+            return 0;
+        }
+        int l = getDepth(node.left) + 1;
+        int r = getDepth(node.right) + 1;
+        return Math.max(r, l);
+    }
+
 }
 
